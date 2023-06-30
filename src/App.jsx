@@ -3,7 +3,9 @@ const _data = [
     name: "فتوسل 16 آمپر شیوا امواج",
     price: "239000",
     photo: "Models/فتوسل 16 آمپر شیوا امواج.jpg",
-    remaining: "0",
+    remaining: "1",
+    discountRate: "10",
+    finalPrice: 215000,
   },
 
   {
@@ -11,12 +13,14 @@ const _data = [
     price: "657000",
     photo: "Models/تایمر دیجیتال شیوا امواج.jpg",
     remaining: "20",
+    discount: "",
   },
   {
     name: "تایمر چپ گرد-راست گرد",
     price: "686000",
     photo: "Models/تایمر چپ گرد-راست گرد.png",
     remaining: "15",
+    discount: "",
   },
 ];
 
@@ -31,40 +35,58 @@ function App() {
     </div>
   );
 }
-let listing_models = 1;
-function All_Models() {
-  return (
-    <div>
-      <h2 className="text-center">تمامی محصولات</h2>
-      <div className="flex">
-        {listing_models > 0 ? (
-          <div className="flex">
-            {_data.map((models) => (
-              <Models modelsObj={models} key={models.name} />
-            ))}
-          </div>
-        ) : (
-          <p> محصولی برای نمایش وجود ندارد ، در حال انبار گردانی هستیم</p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function Models(modelsObj) {
-  if (modelsObj?.remaining == 0) return null;
-  return (
-    <div className="bg-red-500 flex flex-col w-52 h-72 m-3">
-      <img src={modelsObj?.photo} alt="" />
-      <div>{modelsObj?.name}</div>
-      <div>{modelsObj?.price} </div>
-      <div>{modelsObj?.remaining}</div>
-    </div>
-  );
-}
 
 function Header() {
   return <h1>ecommerce site</h1>;
+}
+
+let listing_models = 1;
+function All_Models() {
+  return (
+    // use React Fragment
+    <>
+      <h2 className="text-center">تمامی محصولات</h2>
+
+      <div>
+        <div className="flex">
+          {listing_models > 0 ? (
+            <div className="flex">
+              {_data.map((models) => (
+                <Models modelsObj={models} key={models.name} />
+              ))}
+            </div>
+          ) : (
+            <p> محصولی برای نمایش وجود ندارد ، در حال انبار گردانی هستیم</p>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function Models({ modelsObj }) {
+  if (modelsObj?.remaining == 0) return null;
+  return (
+    <div
+      className={`flex flex-col w-52 h-80 m-3 ${
+        modelsObj?.discountRate ? "border-2 border-sky-500" : "bg-red-500"
+      }`}
+    >
+      <img src={modelsObj?.photo} alt="" />
+      <div>{modelsObj?.name}</div>
+      <div>
+        {modelsObj?.discountRate ? (
+          <div>
+            <div className="line-through">{modelsObj?.price} </div>
+            <div>{modelsObj?.finalPrice}</div>
+          </div>
+        ) : (
+          <div>{modelsObj?.price} </div>
+        )}
+      </div>
+      <div>{modelsObj?.remaining}</div>
+    </div>
+  );
 }
 
 function Footer() {

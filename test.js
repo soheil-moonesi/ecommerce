@@ -1,25 +1,23 @@
-// const data = [
-//     {
-//       name: "فتوسل 16 آمپر شیوا امواج",
-//       price: "239000",
-//       photo: "Models/فتوسل 16 آمپر شیوا امواج.jpg",
-//       remaining: "10",
-//     },
-  
-//     {
-//       name: "تایمر دیجیتال شیوا امواج",
-//       price: "657000",
-//       photo: "Models/تایمر دیجیتال شیوا امواج.jpg",
-//       remaining: "20",
-//     },
-//     {
-//       name: "تایمر چپ گرد-راست گرد",
-//       price: "686000",
-//       photo: "Models/تایمر چپ گرد-راست گرد.png",
-//       remaining: "15",
-//     },
-//   ];
-const a = 5
-const b = 6
-let c = a+b
-console.log(c)
+
+console.log(1&&1)
+console.log(1&1)
+console.log(1&&2)
+//& is bitwise AND
+console.log(1&2)
+
+//falsy value
+console.log(''&&'hi')
+console.log(false&&'hi')
+console.log(null&&'hi')
+console.log(0&&'hi')
+console.log(NaN&&'hi')
+
+//truthy value
+console.log(1&&'hi')
+console.log('something'&&'hi')
+
+//ternary operators
+let i=10
+i<6 ? console.log('i is less than 6') : console.log("i is greater than 6")
+
+
