@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const _data = [
   {
     name: "فتوسل 16 آمپر شیوا امواج",
@@ -31,6 +33,7 @@ function App() {
     <div className="w-screen h-screen bg-slate-500 flex flex-col justify-center items-center">
       <Header />
       <All_Models />
+      <All_Levels />
       <Footer />
     </div>
   );
@@ -103,6 +106,54 @@ function Footer() {
       </div>
       {isActive && <p>همین حالا تماس بگیرید</p>}
     </footer>
+  );
+}
+
+const level_message = [
+  "انتخاب محصولات برای خرید",
+  "وارد کردن مشخصات",
+  "تعیین زمان  و تاریخ برای تماس",
+];
+
+function All_Levels() {
+  const [step, setStep] = useState(1);
+
+  function handlePrevious() {
+    if (step > 1) {setStep((currentState)=>currentState - 1)};
+  }
+  function handleNext() {
+    if (step < 3) {setStep((currentState)=>currentState + 1)};
+  }
+
+  return (
+    <div className="mb-10">
+      <div className="flex justify-around">
+        <div
+          className={`w-10 text-center ${step >= 1 ? "bg-orange-500" : null}`}
+        >
+          1
+        </div>
+        <div
+          className={`w-10 text-center ${step >= 2 ? "bg-orange-500" : null}`}
+        >
+          2
+        </div>
+        <div
+          className={`w-10 text-center ${step >= 3 ? "bg-orange-500" : null}`}
+        >
+          3
+        </div>
+      </div>
+
+      <div>
+        مرحله {step} : {level_message[step - 1]}{" "}
+      </div>
+
+      <div className="flex justify-around gap-4">
+        <button onClick={handlePrevious}>مرحله قبلی</button>
+        <button onClick={handleNext}>مرحله بعدی</button>
+      </div>
+    </div>
   );
 }
 

@@ -1,9 +1,12 @@
 
-console.log(1&&1)
-console.log(1&1)
-console.log(1&&2)
 //& is bitwise AND
-console.log(1&2)
+
+let a =  5;       // Binary representation: 0101
+let b = 6;       // Binary representation:  0111
+
+let result = a & b;    // Binary AND operation: 0101
+
+console.log(result);  
 
 //falsy value
 console.log(''&&'hi')
@@ -16,8 +19,8 @@ console.log(NaN&&'hi')
 console.log(1&&'hi')
 console.log('something'&&'hi')
 
-//ternary operators
-let i=10
+//ternary operator
+let i=5
 i<6 ? console.log('i is less than 6') : console.log("i is greater than 6")
 
 
