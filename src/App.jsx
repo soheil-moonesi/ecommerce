@@ -30,11 +30,12 @@ const _data = [
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-slate-500 flex flex-col justify-center items-center">
+    <div className=" w-screen h-screen bg-slate-500 flex flex-col justify-center items-center">
       <Header />
       <All_Models />
       <All_Levels />
       <Footer />
+      <Buy_Section />
     </div>
   );
 }
@@ -68,44 +69,51 @@ function All_Models() {
 }
 
 function Models({ modelsObj }) {
+  const [buyCount, setBuyCount] = useState(0);
+
+  function buyCountIncrease() {
+    setBuyCount((currentBuyCount) => currentBuyCount + 1);
+  }
+  function buyCountDecrease() {
+    if (buyCount > 0) setBuyCount((currentBuyCount) => currentBuyCount - 1);
+  }
+
   if (modelsObj?.remaining == 0) return null;
+
   return (
     <div
-      className={`flex flex-col w-52 h-80 m-3 ${
+      className={`flex flex-col w-52 h-auto gap-3 m-3  ${
         modelsObj?.discountRate ? "border-2 border-sky-500" : "bg-red-500"
       }`}
     >
       <img src={modelsObj?.photo} alt="" />
-      <div>{modelsObj?.name}</div>
-      <div>
+      <div className="text-center">{modelsObj?.name}</div>
+      <div className="text-center">
         {modelsObj?.discountRate ? (
+          //
           <div>
-            <div className="line-through">{modelsObj?.price} </div>
-            <div>{modelsObj?.finalPrice}</div>
+            <div className="line-through text-center ">
+              <span> قیمت نهایی: {modelsObj?.price} تومان</span>
+            </div>
+            <div> قیمت با تخفیف: {modelsObj?.finalPrice} تومان</div>
           </div>
         ) : (
-          <div>{modelsObj?.price} </div>
+          <div>قیمت نهایی: {modelsObj?.price} تومان</div>
         )}
       </div>
-      <div>{modelsObj?.remaining}</div>
-    </div>
-  );
-}
-
-function Footer() {
-  const hour = new Date().getHours();
-  const activeHour = 8;
-  const deActiveHour = 22;
-  const isActive = hour >= activeHour && hour <= deActiveHour;
-
-  return (
-    <footer className="text-center">
-      {new Date().toLocaleDateString("fa-IR")} :تاریخ امروز
-      <div>
-        پشتیبانی تلفنی از ساعت {activeHour} تا {deActiveHour} : 09190169216
+      <div className="text-center">
+        تعداد موجود: {modelsObj?.remaining - buyCount}{" "}
       </div>
-      {isActive && <p>همین حالا تماس بگیرید</p>}
-    </footer>
+      <div className="flex gap-4 justify-center">
+        <button onClick={buyCountDecrease}>-</button>
+        <div>تعداد خرید:</div>
+        <div>{buyCount}</div>
+        <button onClick={buyCountIncrease}>+</button> 
+      </div>
+      <div className="flex justify-center items-center">
+      <button type="button" class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">وارد کردن به سبد خرید</button>
+      </div>
+    </div>
   );
 }
 
@@ -119,15 +127,19 @@ function All_Levels() {
   const [step, setStep] = useState(1);
 
   function handlePrevious() {
-    if (step > 1) {setStep((currentState)=>currentState - 1)};
+    if (step > 1) {
+      setStep((currentState) => currentState - 1);
+    }
   }
   function handleNext() {
-    if (step < 3) {setStep((currentState)=>currentState + 1)};
+    if (step < 3) {
+      setStep((currentState) => currentState + 1);
+    }
   }
 
   return (
     <div className="mb-10">
-      <div className="flex justify-around">
+      <div className="flex justify-around ">
         <div
           className={`w-10 text-center ${step >= 1 ? "bg-orange-500" : null}`}
         >
@@ -153,6 +165,43 @@ function All_Levels() {
         <button onClick={handlePrevious}>مرحله قبلی</button>
         <button onClick={handleNext}>مرحله بعدی</button>
       </div>
+    </div>
+  );
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  const activeHour = 8;
+  const deActiveHour = 22;
+  const isActive = hour >= activeHour && hour <= deActiveHour;
+
+  return (
+    <footer className="text-center">
+      تاریخ امروز: {new Date().toLocaleDateString("fa-IR")}
+      <div>
+        پشتیبانی تلفنی از ساعت {activeHour} تا {deActiveHour} : 09190169216
+      </div>
+      {isActive && <p>همین حالا تماس بگیرید</p>}
+    </footer>
+  );
+}
+
+function Buy_Section() {
+  return (
+    <div>
+      <div className="flex">
+        {_data.map((models) => (
+          <Buy_Item modelsObj={models} key={models.name} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Buy_Item({ modelsObj }) {
+  return (
+    <div className="w-auto h-auto">
+      {modelsObj.name} {modelsObj.price} <button>❌</button>
     </div>
   );
 }
