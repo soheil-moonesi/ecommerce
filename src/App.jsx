@@ -26,8 +26,6 @@ const _data = [
   },
 ];
 
-// import propTypes from "prop-types";
-
 function App() {
   return (
     <div className=" w-screen h-screen bg-slate-500 flex flex-col justify-center items-center">
@@ -35,7 +33,6 @@ function App() {
       <All_Models />
       <All_Levels />
       <Footer />
-      <Buy_Section />
     </div>
   );
 }
@@ -64,12 +61,14 @@ function All_Models() {
           )}
         </div>
       </div>
+      <Buy_Section />
     </>
   );
 }
 
 function Models({ modelsObj }) {
   const [buyCount, setBuyCount] = useState(0);
+  const [items, setItems] = useState([]);
 
   function buyCountIncrease() {
     setBuyCount((currentBuyCount) => currentBuyCount + 1);
@@ -78,10 +77,26 @@ function Models({ modelsObj }) {
     if (buyCount > 0) setBuyCount((currentBuyCount) => currentBuyCount - 1);
   }
 
+  function handleAddItems(itemPass) {
+    setItems((items) => [...items, itemPass]);
+  }
+
   if (modelsObj?.remaining == 0) return null;
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const itemPass = {
+      name: modelsObj?.name,
+      price: modelsObj?.price,
+      buyCount,
+    };
+    handleAddItems(itemPass);
+    setBuyCount(0);
+  }
+
   return (
-    <div
+    <form
+      onSubmit={(e) => handleSubmit(e)}
       className={`flex flex-col w-52 h-auto gap-3 m-3  ${
         modelsObj?.discountRate ? "border-2 border-sky-500" : "bg-red-500"
       }`}
@@ -90,7 +105,6 @@ function Models({ modelsObj }) {
       <div className="text-center">{modelsObj?.name}</div>
       <div className="text-center">
         {modelsObj?.discountRate ? (
-          //
           <div>
             <div className="line-through text-center ">
               <span> قیمت نهایی: {modelsObj?.price} تومان</span>
@@ -102,18 +116,32 @@ function Models({ modelsObj }) {
         )}
       </div>
       <div className="text-center">
-        تعداد موجود: {modelsObj?.remaining - buyCount}{" "}
+        تعداد موجود: {modelsObj?.remaining - buyCount}
       </div>
       <div className="flex gap-4 justify-center">
-        <button onClick={buyCountDecrease}>-</button>
+        <button type="button" onClick={buyCountDecrease}>
+          -
+        </button>
         <div>تعداد خرید:</div>
-        <div>{buyCount}</div>
-        <button onClick={buyCountIncrease}>+</button> 
+        <input
+          className="w-10"
+          type="number"
+          value={buyCount}
+          placeholder="0"
+        />
+        <button type="button" onClick={buyCountIncrease}>
+          +
+        </button>
       </div>
       <div className="flex justify-center items-center">
-      <button type="button" class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">وارد کردن به سبد خرید</button>
+        <button
+          type="submit"
+          class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+        >
+          وارد کردن به سبد خرید🛒
+        </button>
       </div>
-    </div>
+    </form>
   );
 }
 
@@ -158,7 +186,7 @@ function All_Levels() {
       </div>
 
       <div>
-        مرحله {step} : {level_message[step - 1]}{" "}
+        مرحله {step} : {level_message[step - 1]}
       </div>
 
       <div className="flex justify-around gap-4">
@@ -186,24 +214,24 @@ function Footer() {
   );
 }
 
-function Buy_Section() {
+function Buy_Section({ items }) {
   return (
     <div>
       <div className="flex">
-        {_data.map((models) => (
+        {/* {_data.map((models) => (
           <Buy_Item modelsObj={models} key={models.name} />
-        ))}
+        ))} */}
       </div>
     </div>
   );
 }
 
-function Buy_Item({ modelsObj }) {
-  return (
-    <div className="w-auto h-auto">
-      {modelsObj.name} {modelsObj.price} <button>❌</button>
-    </div>
-  );
-}
+// function Buy_Item({ modelsObj }) {
+//   return (
+//     <div className="w-auto h-auto">
+//       {modelsObj.name} {modelsObj.price} <button>❌</button>
+//     </div>
+//   );
+// }
 
 export default App;
