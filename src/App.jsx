@@ -10,21 +10,20 @@ const _data = [
     discountRate: "10",
     finalPrice: 215000,
   },
-
   {
     id: 2,
-    name: "تایمر دیجیتال شیوا امواج",
-    price: "657000",
-    photo: "Models/تایمر دیجیتال شیوا امواج.jpg",
-    remaining: "20",
+    name: "تایمر چپ گرد-راست گرد",
+    price: "200000",
+    photo: "Models/تایمر چپ گرد-راست گرد.png",
+    remaining: "15",
     discount: "",
   },
   {
     id: 3,
-    name: "تایمر چپ گرد-راست گرد",
-    price: "686000",
-    photo: "Models/تایمر چپ گرد-راست گرد.png",
-    remaining: "15",
+    name: "تایمر دیجیتال شیوا امواج",
+    price: "657000",
+    photo: "Models/تایمر دیجیتال شیوا امواج.jpg",
+    remaining: "20",
     discount: "",
   },
 ];
@@ -56,9 +55,15 @@ function Header() {
 
 let listing_models = 1;
 function All_Models({ items, handleAddItems }) {
-  const [sortBy,setSortBy]= useState(items)
+  const [sortBy, setSortBy] = useState("product_list");
 
-  
+  let sortedItems;
+
+  if (sortBy === "product_list") sortedItems = _data;
+
+  if (sortBy === "price_list")
+    sortedItems = _data.slice().sort((a, b) => a.price.localeCompare(b.price));
+
   return (
     <>
       <h2 className="text-center">تمامی محصولات</h2>
@@ -67,7 +72,7 @@ function All_Models({ items, handleAddItems }) {
         <div className="flex">
           {listing_models > 0 ? (
             <div className="flex">
-              {_data.map((models) => (
+              {sortedItems.map((models) => (
                 <Models
                   modelsObj={models}
                   items={items}
@@ -82,14 +87,17 @@ function All_Models({ items, handleAddItems }) {
         </div>
       </div>
       <div className="w-80 flex">
-        <select className="w-80" name="" id="">
-          <option className="w-80" value="بر اساس محصولات">
+        <select
+          className="w-80"
+          onChange={(e) => setSortBy(e.target.value)}
+          value={sortBy}
+        >
+          <option className="w-80" value="product_list">
             بر اساس محصولات
           </option>
-          <option className="w-80" value="بر اساس قیمت">
+          <option className="w-80" value="price_list">
             بر اساس قیمت
           </option>
-          <option value="بر اساس فروش">بر اساس فروش</option>
         </select>
       </div>
     </>
