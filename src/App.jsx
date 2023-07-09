@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const _data = [
   {
+    id: 1,
     name: "فتوسل 16 آمپر شیوا امواج",
     price: "239000",
     photo: "Models/فتوسل 16 آمپر شیوا امواج.jpg",
@@ -11,6 +12,7 @@ const _data = [
   },
 
   {
+    id: 2,
     name: "تایمر دیجیتال شیوا امواج",
     price: "657000",
     photo: "Models/تایمر دیجیتال شیوا امواج.jpg",
@@ -18,6 +20,7 @@ const _data = [
     discount: "",
   },
   {
+    id: 3,
     name: "تایمر چپ گرد-راست گرد",
     price: "686000",
     photo: "Models/تایمر چپ گرد-راست گرد.png",
@@ -27,12 +30,22 @@ const _data = [
 ];
 
 function App() {
+  const [items, setItems] = useState([]);
+  function handleAddItems(itemPass) {
+    setItems((items) => [...items, itemPass]);
+  }
+
+  function handleDeleteItems(id) {
+    setItems((items) => items.filter((items) => items.id !== id));
+  }
+
   return (
     <div className=" w-screen h-screen bg-slate-500 flex flex-col justify-center items-center">
       <Header />
-      <All_Models />
+      <All_Models items={items} handleAddItems={handleAddItems} />
       <All_Levels />
       <Footer />
+      <Buy_Section items={items} handleDeleteItems={handleDeleteItems} />
     </div>
   );
 }
@@ -42,9 +55,11 @@ function Header() {
 }
 
 let listing_models = 1;
-function All_Models() {
+function All_Models({ items, handleAddItems }) {
+  const [sortBy,setSortBy]= useState(items)
+
+  
   return (
-    // use React Fragment
     <>
       <h2 className="text-center">تمامی محصولات</h2>
 
@@ -53,7 +68,12 @@ function All_Models() {
           {listing_models > 0 ? (
             <div className="flex">
               {_data.map((models) => (
-                <Models modelsObj={models} key={models.name} />
+                <Models
+                  modelsObj={models}
+                  items={items}
+                  handleAddItems={handleAddItems}
+                  key={models.name}
+                />
               ))}
             </div>
           ) : (
@@ -61,24 +81,29 @@ function All_Models() {
           )}
         </div>
       </div>
-      <Buy_Section />
+      <div className="w-80 flex">
+        <select className="w-80" name="" id="">
+          <option className="w-80" value="بر اساس محصولات">
+            بر اساس محصولات
+          </option>
+          <option className="w-80" value="بر اساس قیمت">
+            بر اساس قیمت
+          </option>
+          <option value="بر اساس فروش">بر اساس فروش</option>
+        </select>
+      </div>
     </>
   );
 }
 
-function Models({ modelsObj }) {
+function Models({ modelsObj, items, handleAddItems }) {
   const [buyCount, setBuyCount] = useState(0);
-  const [items, setItems] = useState([]);
 
   function buyCountIncrease() {
     setBuyCount((currentBuyCount) => currentBuyCount + 1);
   }
   function buyCountDecrease() {
     if (buyCount > 0) setBuyCount((currentBuyCount) => currentBuyCount - 1);
-  }
-
-  function handleAddItems(itemPass) {
-    setItems((items) => [...items, itemPass]);
   }
 
   if (modelsObj?.remaining == 0) return null;
@@ -89,6 +114,7 @@ function Models({ modelsObj }) {
       name: modelsObj?.name,
       price: modelsObj?.price,
       buyCount,
+      id: modelsObj?.id,
     };
     handleAddItems(itemPass);
     setBuyCount(0);
@@ -166,7 +192,7 @@ function All_Levels() {
   }
 
   return (
-    <div className="mb-10">
+    <div className="m-5">
       <div className="flex justify-around ">
         <div
           className={`w-10 text-center ${step >= 1 ? "bg-orange-500" : null}`}
@@ -214,24 +240,28 @@ function Footer() {
   );
 }
 
-function Buy_Section({ items }) {
+function Buy_Section({ items, handleDeleteItems }) {
   return (
     <div>
-      <div className="flex">
-        {/* {_data.map((models) => (
-          <Buy_Item modelsObj={models} key={models.name} />
-        ))} */}
+      <div className="flex w-auto h-auto flex-col m-3">
+        {items.map((items) => (
+          <Buy_Item items={items} handleDeleteItems={handleDeleteItems} />
+        ))}
       </div>
     </div>
   );
 }
 
-// function Buy_Item({ modelsObj }) {
-//   return (
-//     <div className="w-auto h-auto">
-//       {modelsObj.name} {modelsObj.price} <button>❌</button>
-//     </div>
-//   );
-// }
+function Buy_Item({ items, handleDeleteItems }) {
+  return (
+    <div className="w-auto h-auto flex ">
+      <div>
+        <span>{items.name}</span> <span>{items.buyCount}</span>{" "}
+        <span> {items.price} تومان </span>{" "}
+        <button onClick={() => handleDeleteItems(items.id)}>❌</button>
+      </div>
+    </div>
+  );
+}
 
 export default App;
