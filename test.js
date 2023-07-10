@@ -22,6 +22,7 @@ console.log("something" && "hi");
 let i = 5;
 i < 6 ? console.log("i is less than 6") : console.log("i is greater than 6");
 
+//test section 1
 const items = [{ name: "wili" }, { name: "albert" }, { name: "jack" }];
 
 console.log(items);
@@ -40,3 +41,49 @@ handleAddItems("Item 1");
 handleAddItems("Item 2");
 
 console.log(items2);
+//test section 1 end
+
+//Spread Operator (...)
+const numbers1 = [1, 2, 3];
+const numbers2 = [4, 5, 6];
+
+const combined = [...numbers1, ...numbers2];
+
+console.log(combined);
+
+ // Passing Array Elements as Function Arguments
+
+function multiply(a, b, c) {
+  return a * b * c;
+}
+
+const numbers = [2, 3, 4];
+
+console.log(multiply(...numbers));
+
+//shallow copy
+const originalArray = [1, 2, 3];
+const copiedArray = [...originalArray];
+
+console.log(copiedArray); 
+console.log(originalArray === copiedArray);  
+
+
+function add(d, e, f) {
+  console.log(d); 
+  console.log(e) 
+  console.log(f)
+}
+
+const numbers3 = [1, 2, 3];
+
+add(...numbers3);
+
+
+const some_numbers = [39, 12, 2]
+console.log(some_numbers.sort());
+//convert to utf-16
+//https://convertcodes.com/utf16-encode-decode-convert-string/
+//00330039 ---39
+//00310032---12
+//0032---2
