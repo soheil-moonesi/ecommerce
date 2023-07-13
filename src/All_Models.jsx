@@ -14,27 +14,9 @@ export function All_Models({ items, handleAddItems }) {
 
   return (
     <>
-      <h2 className="text-center">تمامی محصولات</h2>
+      <h2 className="m-2 text-center">تمامی محصولات</h2>
 
-      <div>
-        <div className="flex">
-          {listing_models > 0 ? (
-            <div className="flex">
-              {sortedItems.map((models) => (
-                <Models
-                  modelsObj={models}
-                  items={items}
-                  handleAddItems={handleAddItems}
-                  key={models.name}
-                />
-              ))}
-            </div>
-          ) : (
-            <p> محصولی برای نمایش وجود ندارد ، در حال انبار گردانی هستیم</p>
-          )}
-        </div>
-      </div>
-      <div className="w-80 flex">
+      <div className="w-80 flex border-2 broder-black">
         <select
           className="w-80"
           onChange={(e) => setSortBy(e.target.value)}
@@ -47,6 +29,25 @@ export function All_Models({ items, handleAddItems }) {
             بر اساس قیمت
           </option>
         </select>
+      </div>
+
+      <div className="flex flex-wrap w-full justify-center">
+        <div className="flex flex-wrap w-4/5 justify-center bg-white">
+          {listing_models > 0 ? (
+            <div className="flex flex-wrap justify-center">
+              {sortedItems.map((models) => (
+                <Models
+                  modelsObj={models}
+                  items={items}
+                  handleAddItems={handleAddItems}
+                  key={models.id}
+                />
+              ))}
+            </div>
+          ) : (
+            <p> محصولی برای نمایش وجود ندارد ، در حال انبار گردانی هستیم</p>
+          )}
+        </div>
       </div>
     </>
   );
@@ -78,11 +79,15 @@ function Models({ modelsObj, items, handleAddItems }) {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className={`flex flex-col w-52 h-auto gap-3 m-3  ${
-        modelsObj?.discountRate ? "border-2 border-sky-500" : "bg-red-500"
+      className={`flex flex-col w-72 h-auto m-3 ${
+        modelsObj?.discountRate
+          ? "border-2 border-sky-500"
+          : "border-2 border-black"
       }`}
     >
-      <img src={modelsObj?.photo} alt="" />
+      <div className="flex justify-center ">
+        <img className=" w-64 h-64" src={modelsObj?.photo} alt="" />
+      </div>
       <div className="text-center">{modelsObj?.name}</div>
       <div className="text-center">
         {modelsObj?.discountRate ? (
