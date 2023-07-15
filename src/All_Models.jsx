@@ -2,7 +2,7 @@ import { useState } from "react";
 import { _data } from "./App";
 
 let listing_models = 1;
-export function All_Models({ items, handleAddItems }) {
+export function All_Models({  handleAddItems }) {
   const [sortBy, setSortBy] = useState("product_list");
 
   let sortedItems;
@@ -10,18 +10,14 @@ export function All_Models({ items, handleAddItems }) {
   if (sortBy === "product_list") sortedItems = _data;
 
   if (sortBy === "price_list")
-    sortedItems = _data.slice().sort((a, b) => a.price - b.price);
+    sortedItems = _data.toSorted((a, b) => a.price - b.price);
 
   return (
     <>
       <h2 className="m-2 text-center">تمامی محصولات</h2>
 
       <div className="w-80 flex border-2 broder-black">
-        <select
-          className="w-80"
-          onChange={(e) => setSortBy(e.target.value)}
-          value={sortBy}
-        >
+        <select className="w-80" onChange={(e) => setSortBy(e.target.value)}>
           <option className="w-80" value="product_list">
             بر اساس محصولات
           </option>
@@ -38,7 +34,6 @@ export function All_Models({ items, handleAddItems }) {
               {sortedItems.map((models) => (
                 <Models
                   modelsObj={models}
-                  items={items}
                   handleAddItems={handleAddItems}
                   key={models.id}
                 />
@@ -52,7 +47,7 @@ export function All_Models({ items, handleAddItems }) {
     </>
   );
 }
-function Models({ modelsObj, items, handleAddItems }) {
+function Models({ modelsObj, handleAddItems }) {
   const [buyCount, setBuyCount] = useState(0);
 
   function buyCountIncrease() {

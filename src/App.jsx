@@ -12,7 +12,7 @@ export const _data = [
     name: "فتوسل 16 آمپر شیوا امواج",
     price: "239000",
     photo: "Models/فتوسل 16 آمپر شیوا امواج.jpg",
-    remaining: "1",
+    remaining: "10",
     discountRate: "10",
     finalPrice: 215000,
   },
@@ -37,7 +37,7 @@ export const _data = [
     name: "فتوسل 16 آمپر شیوا امواج",
     price: "239000",
     photo: "Models/فتوسل 16 آمپر شیوا امواج.jpg",
-    remaining: "1",
+    remaining: "10",
     discountRate: "10",
     finalPrice: 215000,
   },
@@ -68,7 +68,7 @@ function App() {
   return (
     <div className=" w-auto h-auto bg-white flex flex-col justify-center items-center">
       <Header />
-      <All_Models items={items} handleAddItems={handleAddItems} />
+      <All_Models handleAddItems={handleAddItems} />
 
       <Buy_Section
         items={items}
