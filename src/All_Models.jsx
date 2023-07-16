@@ -2,7 +2,7 @@ import { useState } from "react";
 import { _data } from "./App";
 
 let listing_models = 1;
-export function All_Models({  handleAddItems }) {
+export function All_Models({ handleAddItems }) {
   const [sortBy, setSortBy] = useState("product_list");
 
   let sortedItems;
