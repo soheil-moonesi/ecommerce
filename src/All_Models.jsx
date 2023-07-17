@@ -48,7 +48,7 @@ export function All_Models({ handleAddItems }) {
   );
 }
 function Models({ modelsObj, handleAddItems }) {
-  const [buyCount, setBuyCount] = useState(0);
+  const [buyCount, setBuyCount] = useState(1);
 
   function buyCountIncrease() {
     setBuyCount((currentBuyCount) => currentBuyCount + 1);
@@ -68,51 +68,55 @@ function Models({ modelsObj, handleAddItems }) {
       id: modelsObj?.id,
     };
     handleAddItems(itemPass);
-    setBuyCount(0);
+    setBuyCount(1);
   }
 
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className={`flex flex-col w-72 h-auto m-3 ${
+      className={`flex flex-col w-64 h-auto m-2 hover:shadow-2xl
+
+      ${
         modelsObj?.discountRate
           ? "border-2 border-sky-500"
-          : "border-2 border-black"
+          : "border-2 border-gray"
       }`}
     >
-      <div className="flex justify-center ">
-        <img className=" w-64 h-64" src={modelsObj?.photo} alt="" />
+      <div className="flex justify-center w-64 h-64 p-3">
+        <img className=" w-[80%] h-[80%] " src={modelsObj?.photo} alt="" />
       </div>
-      <div className="text-center">{modelsObj?.name}</div>
-      <div className="text-center">
-        {modelsObj?.discountRate ? (
-          <div>
-            <div className="line-through text-center ">
-              <span> قیمت نهایی: {modelsObj?.price} تومان</span>
+      <div className=" h-32 flex flex-col gap-2 items-center">
+        <div className="text-center flex text-sm">{modelsObj?.name}</div>
+        <div className="text-center flex">
+          {modelsObj?.discountRate ? (
+            <div>
+              <div className="line-through text-center flex">
+                <span> {modelsObj?.price} تومان</span>
+              </div>
+              <div> قیمت با تخفیف: {modelsObj?.finalPrice} تومان</div>
             </div>
-            <div> قیمت با تخفیف: {modelsObj?.finalPrice} تومان</div>
-          </div>
-        ) : (
-          <div>قیمت نهایی: {modelsObj?.price} تومان</div>
-        )}
-      </div>
-      <div className="text-center">
+          ) : (
+            <div> {modelsObj?.price} تومان</div>
+          )}
+        </div>
+        {/* <div className="text-center">
         تعداد موجود: {modelsObj?.remaining - buyCount}
-      </div>
-      <div className="flex gap-4 justify-center">
-        <button type="button" onClick={buyCountDecrease}>
-          -
-        </button>
-        <div>تعداد خرید:</div>
-        <input
-          className="w-10"
-          type="number"
-          value={buyCount}
-          placeholder="0"
-        />
-        <button type="button" onClick={buyCountIncrease}>
-          +
-        </button>
+      </div> */}
+        <div className="flex gap-4 justify-center">
+          <button type="button" onClick={buyCountDecrease}>
+            -
+          </button>
+          <div>تعداد خرید:</div>
+          <input
+            className="w-10"
+            type="number"
+            value={buyCount}
+            placeholder="0"
+          />
+          <button type="button" onClick={buyCountIncrease}>
+            +
+          </button>
+        </div>
       </div>
       <div className="flex justify-center items-center">
         <button

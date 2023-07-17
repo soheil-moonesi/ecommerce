@@ -13,7 +13,7 @@ export const _data = [
     price: "239000",
     photo: "Models/فتوسل 16 آمپر شیوا امواج.jpg",
     remaining: "10",
-    discountRate: "10",
+    discountRate: "",
     finalPrice: 215000,
   },
   {

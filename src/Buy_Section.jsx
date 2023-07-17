@@ -22,7 +22,7 @@ export function Buy_Section({
         </div>
       </div>
 
-      <div>مبلغ کل خرید: {totalPriceAllItems}</div>
+      <div>مبلغ کل خرید: {totalPriceAllItems} تومان</div>
     </>
   );
 }
