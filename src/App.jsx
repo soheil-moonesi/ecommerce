@@ -99,20 +99,34 @@ function App() {
 
   return (
     <div className=" w-auto h-auto bg-white flex flex-col justify-center items-center">
-      <Header />
+      <Header>
+        <ShowNumberOfBuyItems items={items} />
+      </Header>
       <All_Models handleAddItems={handleAddItems} />
 
       <Buy_Section
         items={items}
         handleDeleteItems={handleDeleteItems}
         handleDeleteAllItems={handleDeleteAllItems}
-      />
+      /> 
       <All_Levels />
       <Footer />
 
       <Accordion AccordionText={AccordionText} />
     </div>
   );
+}
+
+function ShowNumberOfBuyItems({ items }) {
+  return (
+    <div className="flex self-center m-11">سبد خرید 🛒 {items.length}</div>
+  );
+}
+
+function ButtonDeleteAllItems(){
+  return (
+    <button onClick={() => handleDeleteItems(items.id)}>❌</button>
+  )
 }
 
 export const level_message = [

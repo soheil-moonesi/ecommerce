@@ -1,4 +1,4 @@
-export function Header() {
+export function Header({children}) {
   return (
     <div className=" bg-slate-200 w-full flex justify-between">
       <div className="flex w-[70%] items-center">
@@ -10,7 +10,7 @@ export function Header() {
         />
        
       </div>
-      <div className="flex self-center m-11">سبد خرید 🛒</div>
+      {children}
     </div>
   );
 }
