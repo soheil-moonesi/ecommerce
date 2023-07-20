@@ -31,15 +31,10 @@ items0.push({ name: "Thomas" });
 
 console.log(items0);
 
-
-
-
-
-
 let items = [];
 
 function handleAddItems(itemPass) {
-  items = [items, itemPass];
+  items = [...items, itemPass];
 }
 
 handleAddItems("Item 0");
@@ -47,13 +42,6 @@ handleAddItems("Item 1");
 handleAddItems("Item 2");
 
 console.log(items);
-
-
-
-
-
-
-
 
 //test section 1 end
 
@@ -83,21 +71,22 @@ console.log(copiedArray);
 console.log(originalArray === copiedArray);  
 
 
-// function add(d, e, f) {
-//   console.log(d); 
-//   console.log(e) 
-//   console.log(f)
-// }
+function add(d, e, f) {
+  console.log(d); 
+  console.log(e) 
+  console.log(f)
+}
 
-// const numbers3 = [1, 2, 3];
+const numbers3 = [1, 2, 3];
 
-// add(...numbers3);
+add(...numbers3);
 
+let rate=[];
+console.log(rate);
+let show =rate.map((rate)=>(rate+3));
+console.log(show)
 
-// const some_numbers = [39, 12, 2]
-// console.log(some_numbers.sort());
-// convert to utf-16
-// https://convertcodes.com/utf16-encode-decode-convert-string/
-// 00330039 ---39
-// 00310032---12
-// 0032---2
+let rate2=Array(5).fill(0);
+console.log(rate2);
+let show2 =rate2.map((_,i)=>(i));
+console.log(show2)

@@ -5,6 +5,7 @@ import { All_Levels } from "./All_Levels";
 import { All_Models } from "./All_Models";
 import { Header } from "./Header";
 import { Accordion } from "./Accordion";
+import { FaStar } from "react-icons/fa";
 
 export const _data = [
   {
@@ -108,10 +109,10 @@ function App() {
         items={items}
         handleDeleteItems={handleDeleteItems}
         handleDeleteAllItems={handleDeleteAllItems}
-      /> 
+      />
       <All_Levels />
       <Footer />
-
+      <Rating />
       <Accordion AccordionText={AccordionText} />
     </div>
   );
@@ -123,10 +124,8 @@ function ShowNumberOfBuyItems({ items }) {
   );
 }
 
-function ButtonDeleteAllItems(){
-  return (
-    <button onClick={() => handleDeleteItems(items.id)}>❌</button>
-  )
+function ButtonDeleteAllItems() {
+  return <button onClick={() => handleDeleteItems(items.id)}>❌</button>;
 }
 
 export const level_message = [
@@ -145,5 +144,27 @@ const AccordionText = [
     note: "سهیل مونسی ",
   },
 ];
+
+function Rating() {
+  const createStars = Array(5).fill(0);
+  const [currentRate, setRate] = useState(0);
+  const [currentRateHover, setRateHover] = useState(0);
+  //explain how position in short circuited is important
+  return (
+    <div className="flex">
+      {createStars.map((_, i) => (
+        <FaStar
+          key={i}
+          color={(currentRateHover || currentRate) > i ? "orange" : "gray"}
+          onClick={() => {
+            setRate(i + 1);
+          }}
+          onMouseEnter={() => setRateHover(i + 1)}
+          onMouseLeave={() => setRateHover(0)}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default App;

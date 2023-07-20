@@ -11,7 +11,7 @@ export function All_Models({ handleAddItems }) {
 
   if (sortBy === "price_list")
     sortedItems = _data.toSorted((a, b) => a.price - b.price);
-
+  console.log(sortedItems);
   return (
     <>
       <h2 className="m-2 text-center">تمامی محصولات</h2>
