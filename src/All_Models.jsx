@@ -3,16 +3,13 @@ import { useState } from "react";
 let listing_models = 1;
 export function All_Models({ handleAddItems, data }) {
   const [sortBy, setSortBy] = useState("product_list");
-  console.log(data);
   let sortedItems;
-  console.log(data);
   if (sortBy === "product_list") sortedItems = data;
 
   if (sortBy === "price_list")
     sortedItems = data.toSorted(
       (a, b) => parseInt(a.price) - parseInt(b.price)
     );
-  console.log(sortedItems);
   return (
     <>
       <h2 className="m-2 text-center">تمامی محصولات</h2>

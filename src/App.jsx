@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Buy_Section } from "./Buy_Section";
 import { Footer } from "./Footer";
 import { All_Levels } from "./All_Levels";
@@ -6,6 +6,19 @@ import { All_Models } from "./All_Models";
 import { Header } from "./Header";
 import { Accordion } from "./Accordion";
 import { FaStar } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Autoplay,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+} from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import { Swiper } from "./Swiper";
 
 // export let _data = [
 //   {
@@ -105,7 +118,6 @@ function App() {
       .then((Response) => Response.json())
       .then((data) => {
         setData(data);
-        console.log(data);
       });
   });
 
@@ -114,6 +126,7 @@ function App() {
       <Header>
         <ShowNumberOfBuyItems items={items} />
       </Header>
+      <SwiperShow />
       <All_Models handleAddItems={handleAddItems} data={data} />
 
       <Buy_Section
@@ -175,6 +188,39 @@ function Rating() {
         />
       ))}
     </div>
+  );
+}
+
+function SwiperShow() {
+  return (
+    <>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper w-full h-96"
+      >
+        <SwiperSlide className="bg-black">Slide 1</SwiperSlide>
+        <SwiperSlide>
+          <img src="Models/logo.png" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
+      </Swiper>
+    </>
   );
 }
 
