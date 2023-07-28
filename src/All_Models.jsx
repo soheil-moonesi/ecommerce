@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { _data } from "./App";
 
 let listing_models = 1;
-export function All_Models({ handleAddItems }) {
+export function All_Models({ handleAddItems, data }) {
   const [sortBy, setSortBy] = useState("product_list");
-
+  console.log(data);
   let sortedItems;
-
-  if (sortBy === "product_list") sortedItems = _data;
+  console.log(data);
+  if (sortBy === "product_list") sortedItems = data;
 
   if (sortBy === "price_list")
-    sortedItems = _data.toSorted((a, b) => a.price - b.price);
+    sortedItems = data.toSorted(
+      (a, b) => parseInt(a.price) - parseInt(b.price)
+    );
   console.log(sortedItems);
   return (
     <>
