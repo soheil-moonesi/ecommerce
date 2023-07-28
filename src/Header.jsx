@@ -1,4 +1,4 @@
-export function Header({children}) {
+export function Header({ children }) {
   return (
     <div className=" bg-slate-200 w-full flex justify-between">
       <div className="flex w-[70%] items-center">
@@ -8,7 +8,6 @@ export function Header({children}) {
           type="text"
           placeholder="🔎جستوجو"
         />
-       
       </div>
       {children}
     </div>

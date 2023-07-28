@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Buy_Section } from "./Buy_Section";
 import { Footer } from "./Footer";
 import { All_Levels } from "./All_Levels";
@@ -97,6 +97,15 @@ function App() {
   function handleDeleteAllItems() {
     setItems([]);
   }
+
+  useEffect(() => {
+    fetch("https://64c18518fa35860baea0a3e4.mockapi.io/data")
+      .then((Response) => Response.json())
+      .then((arrCheck) => {
+        console.log(arrCheck);
+        _data = arrCheck;
+      });
+  });
 
   return (
     <div className=" w-auto h-auto bg-white flex flex-col justify-center items-center">
