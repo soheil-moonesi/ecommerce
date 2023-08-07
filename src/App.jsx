@@ -165,7 +165,7 @@ const AccordionText = [
   },
   {
     title: "سازنده این سایت ",
-    note: "سهیل مونسی ",
+    note: " سهیل مونسی و سپهر مونسی",
   },
 ];
 
@@ -180,13 +180,16 @@ function Rating() {
         <FaStar
           key={i}
           color={(currentRateHover || currentRate) > i ? "orange" : "gray"}
+          
           onClick={() => {
             setRate(i + 1);
           }}
           onMouseEnter={() => setRateHover(i + 1)}
           onMouseLeave={() => setRateHover(0)}
         />
+
       ))}
+
     </div>
   );
 }
