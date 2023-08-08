@@ -18,6 +18,8 @@ import {
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { getProduct } from "./services/apiProduct";
+
 // import { Swiper } from "./Swiper";
 
 // export let _data = [
@@ -114,12 +116,18 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://64c18518fa35860baea0a3e4.mockapi.io/data")
-      .then((Response) => Response.json())
-      .then((data) => {
-        setData(data);
-      });
-  });
+    getProduct().then((data) => {
+      setData(data); // Set the name of the first product
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   fetch("https://64c18518fa35860baea0a3e4.mockapi.io/data")
+  //     .then((Response) => Response.json())
+  //     .then((data) => {
+  //       setData(data);
+  //     });
+  // });
 
   return (
     <div className=" w-auto h-auto bg-white flex flex-col justify-center items-center">
@@ -180,16 +188,13 @@ function Rating() {
         <FaStar
           key={i}
           color={(currentRateHover || currentRate) > i ? "orange" : "gray"}
-          
           onClick={() => {
             setRate(i + 1);
           }}
           onMouseEnter={() => setRateHover(i + 1)}
           onMouseLeave={() => setRateHover(0)}
         />
-
       ))}
-
     </div>
   );
 }

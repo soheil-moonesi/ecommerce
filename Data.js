@@ -1,7 +1,7 @@
 [
   {
     name: "آمپر متر ۹۶",
-    price: "7,990,000",
+    price: "7990000",
     model: "AMD-6000A",
     code: "21D1",
     weight: "315gr",
@@ -10,10 +10,9 @@
     photo: "https://s8.uupload.ir/files/آمپر_متر_۹۶_1cx.jpg",
     id: "1",
   },
-
   {
     name: " آمپرمتر ۹۶*۴۸",
-    price: "8,900,000",
+    price: "8900000",
     model: "AMU-6000A",
     code: "21U1",
     weight: "250gr",
@@ -22,10 +21,9 @@
     photo: "https://s8.uupload.ir/files/آمپرمتر_۹۶۴۸_4mul.jpg",
     id: "2",
   },
-
   {
     name: " تایمر چپ گرد-راست گرد",
-    price: "6,860,000",
+    price: "6860000",
     model: "LRB-SLE",
     code: "14B8",
     weight: "165gr",
@@ -34,10 +32,9 @@
     photo: "https://s8.uupload.ir/files/تایمر_چپ_گرد-راست_گرد_9p3.jpg",
     id: "3",
   },
-
   {
     name: " تایمر چپ گرد-راست گرد سری M",
-    price: "6,860,000",
+    price: "6860000",
     model: "LRM-SLE",
     code: "14M8",
     weight: "68gr",
@@ -46,10 +43,9 @@
     photo: "https://s8.uupload.ir/files/تایمر_چپ_گرد-راست_گرد_سری_m_f42s.png",
     id: "4",
   },
-
   {
     name: " تایمر دقیقه",
-    price: "",
+    price: "200",
     model: "ATJ-60M",
     code: "14J3",
     weight: "100gr",
@@ -58,10 +54,9 @@
     photo: "https://s8.uupload.ir/files/تایمر_دقیقه_fj23.jpg",
     id: "5",
   },
-
   {
     name: " تایمر راه پله",
-    price: "",
+    price: "200",
     model: "STJ-10M",
     code: "14J1",
     weight: "115gr",
@@ -70,7 +65,6 @@
     photo: "https://s8.uupload.ir/files/تایمر_راه_پله_rvxv.jpg",
     id: "6",
   },
-
   {
     name: " تایمر راه پله سری M",
     price: "4040000",
@@ -82,10 +76,9 @@
     photo: "https://s8.uupload.ir/files/تایمر_راه_پله_سری_m_m20z.jpg",
     id: "7",
   },
-
   {
     name: " تایمر راه پله سری N",
-    price: "4,040,000",
+    price: "4040000",
     model: "STJN-10M",
     code: "14JN1",
     weight: "110gr",
@@ -94,10 +87,9 @@
     photo: "https://s8.uupload.ir/files/تایمر_راه_پله_سری_n_9akt.jpg",
     id: "8",
   },
-
   {
     name: "تایمر ستاره مثلث سری N",
-    price: "5,050,000",
+    price: "5050000",
     model: "DTJN-300M",
     code: "14JN4",
     weight: "100gr",
@@ -106,7 +98,6 @@
     photo: "https://s8.uupload.ir/files/تایمر_ستاره_مثلث_سری_n_jco0.jpg",
     id: "9",
   },
-
   {
     name: " تایمر کلید روغنی",
     price: "3445000",
@@ -118,10 +109,9 @@
     photo: "https://s8.uupload.ir/files/تایمر_کلید_روغنی_wvjb.jpg",
     id: "10",
   },
-
   {
     name: " تایمراستارت مجدد",
-    price: "",
+    price: "200",
     model: "RTB-300S",
     code: "14B5",
     weight: "145gr",
@@ -130,10 +120,9 @@
     photo: "https://s8.uupload.ir/files/تایمراستارت_مجدد_hi75.jpg",
     id: "11",
   },
-
   {
     name: " تایمرثانیه",
-    price: "",
+    price: "200",
     model: "ATJ-60S",
     code: "14J2",
     weight: "100gr",
@@ -142,7 +131,6 @@
     photo: "https://s8.uupload.ir/files/تایمرثانیه_exp.jpg",
     id: "12",
   },
-
   {
     name: " ترموستات ۱۲۵ .. ۵۰- درجه سانتیگراد",
     price: "10190000",
@@ -155,7 +143,6 @@
       "https://s8.uupload.ir/files/ترموستات_۱۲۵_.._۵۰-_درجه_سانتیگراد_obah.jpg",
     id: "13",
   },
-
   {
     name: "ترموستات ۱۲۵…۵۰- درجه سانتیگراد سری N",
     price: "10190000",
@@ -168,7 +155,6 @@
       "https://s8.uupload.ir/files/ترموستات_۱۲۵…۵۰-_درجه_سانتیگراد_سری_n_e21d.jpg",
     id: "14",
   },
-
   {
     name: " ترموستات 900 سری N",
     price: "9350000",
@@ -180,7 +166,6 @@
     photo: "https://s8.uupload.ir/files/ترموستات_900_سری_n_3shv.jpg",
     id: "15",
   },
-
   {
     name: " ترموستات ۹۰۰-۰",
     price: "9350000",
