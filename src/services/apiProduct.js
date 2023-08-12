@@ -1,4 +1,3 @@
-// import { data } from "autoprefixer";
 import supabase from "./supabase";
 
 export async function getProduct() {
@@ -6,7 +5,7 @@ export async function getProduct() {
 
   if (error) {
     console.log(error);
-    throw new Error("notttt found");
+    throw new Error("not found");
   }
   return data;
 }

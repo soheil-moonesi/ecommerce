@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-let listing_models = 1;
-export function All_Models({ handleAddItems, data }) {
+export function All_Models({ handleAddItems, data, isLoading }) {
   const [sortBy, setSortBy] = useState("product_list");
+
   let sortedItems;
   if (sortBy === "product_list") sortedItems = data;
 
@@ -27,7 +27,7 @@ export function All_Models({ handleAddItems, data }) {
 
       <div className="flex flex-wrap w-full justify-center">
         <div className="flex flex-wrap w-4/5 justify-center bg-white">
-          {listing_models > 0 ? (
+          {isLoading ? (
             <div className="flex flex-wrap justify-center">
               {sortedItems.map((models) => (
                 <Models
@@ -38,7 +38,7 @@ export function All_Models({ handleAddItems, data }) {
               ))}
             </div>
           ) : (
-            <p> محصولی برای نمایش وجود ندارد ، در حال انبار گردانی هستیم</p>
+            <p>در حال بارگیری محصولات ...</p>
           )}
         </div>
       </div>

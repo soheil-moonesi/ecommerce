@@ -80,23 +80,10 @@ const numbers3 = [1, 2, 3];
 
 add(...numbers3);
 
-
-
-
-let rate = ['','','',''];
+let rate = ["", "", "", ""];
 console.log(rate);
 let show = rate.map((rate) => rate + 3);
 console.log(show);
-
-
-
-
-
-
-
-
-
-
 
 let rate2 = Array(5).fill(0);
 console.log(rate2);
@@ -104,20 +91,13 @@ let show2 = rate2.map((_, i) => i);
 
 console.log(show2);
 
-
-
-
-
-
-
-
 let sumPriceEachItem = [1, 2, 3];
 let initialValue = 0;
 
 const totalPriceAllItems = sumPriceEachItem.reduce(function (
   accumulator,
   currentValue,
-  index,
+  index
 ) {
   return accumulator + currentValue;
 },

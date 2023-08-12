@@ -105,6 +105,8 @@ function App() {
     setItems((items) => [...items, itemPass]);
   }
 
+  const [isLoading, setLoading] = useState(false);
+
   function handleDeleteItems(id) {
     setItems((items) => items.filter((items) => items.id !== id));
   }
@@ -118,6 +120,7 @@ function App() {
   useEffect(() => {
     getProduct().then((data) => {
       setData(data); // Set the name of the first product
+      setLoading(true);
     });
   }, []);
 
@@ -135,7 +138,11 @@ function App() {
         <ShowNumberOfBuyItems items={items} />
       </Header>
       <SwiperShow />
-      <All_Models handleAddItems={handleAddItems} data={data} />
+      <All_Models
+        handleAddItems={handleAddItems}
+        data={data}
+        isLoading={isLoading}
+      />
 
       <Buy_Section
         items={items}
@@ -181,7 +188,6 @@ function Rating() {
   const createStars = Array(5).fill(0);
   const [currentRate, setRate] = useState(0);
   const [currentRateHover, setRateHover] = useState(0);
-  //explain how position in short circuited is important
   return (
     <div className="flex">
       {createStars.map((_, i) => (
