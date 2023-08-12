@@ -8,7 +8,7 @@ export function Header({ children }) {
         <input
           className="w-[40%] h-10 bg-white rounded-xl"
           type="text"
-          placeholder="🔎جستوجو"
+          placeholder="🔎جستجو"
         />
       </div>
       {children}

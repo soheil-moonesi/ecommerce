@@ -7,6 +7,7 @@ import { Header } from "./Header";
 import { Accordion } from "./Accordion";
 import { FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import {
   Autoplay,
   Navigation,
@@ -19,85 +20,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { getProduct } from "./services/apiProduct";
-
-// import { Swiper } from "./Swiper";
-
-// export let _data = [
-//   {
-//     id: 1,
-//     name: "فتوسل 16 آمپر شیوا امواج",
-//     price: "239000",
-//     photo: "Models/فتوسل 16 آمپر شیوا امواج.jpg",
-//     remaining: "10",
-//     discountRate: "",
-//     finalPrice: 215000,
-//   },
-//   {
-//     id: 2,
-//     name: "تایمر چپ گرد-راست گرد",
-//     price: "200000",
-//     photo: "Models/تایمر چپ گرد-راست گرد.png",
-//     remaining: "15",
-//     discount: "",
-//   },
-//   {
-//     id: 3,
-//     name: "تایمر دیجیتال شیوا امواج",
-//     price: "657000",
-//     photo: "Models/تایمر دیجیتال شیوا امواج.jpg",
-//     remaining: "20",
-//     discount: "",
-//   },
-//   {
-//     id: 4,
-//     name: "سوپر ولت آمپر مترVAB-6000A-22B1-71 شیوا امواج",
-//     price: "1019000",
-//     photo: "Models/سوپر ولت آمپر مترVAB-6000A-22B1-71 شیوا امواج.jpg",
-//     remaining: "10",
-//     discount: "",
-//   },
-//   {
-//     id: 5,
-//     name: "ترموستات شیوا امواج مدل TRB - 125D",
-//     price: "1380000",
-//     photo: "Models/ترموستات شیوا امواج مدل TRB - 125D.jpg",
-//     remaining: "9",
-//     discount: "",
-//   },
-//   {
-//     id: 6,
-//     name: "ترموستات 96 شیوا امواج",
-//     price: "1476500",
-//     photo: "Models/ترموستات 96 شیوا امواج.jpg",
-//     remaining: "9",
-//     discount: "",
-//   },
-//   {
-//     id: 7,
-//     name: "ترموستات 50- تا 125 سنسوردار ( سری N ) شیواامواج مدل 15JN3",
-//     price: "978240",
-//     photo:
-//       "Models/ترموستات 50- تا 125 سنسوردار ( سری N ) شیواامواج مدل 15JN3.jpg",
-//     remaining: "9",
-//     discount: "",
-//   },
-//   {
-//     id: 8,
-//     name: "تایمر روغنی کلید شیوا امواج",
-//     price: "328000",
-//     photo: "Models/تایمر کلید روغنی شیوا امواج.jpg",
-//     remaining: "9",
-//     discount: "",
-//   },
-//   {
-//     id: 9,
-//     name: "کنترل فاز شیوا امواج",
-//     price: "771000",
-//     photo: "Models/کنترل فاز شیوا امواج (سری M).jpg",
-//     remaining: "9",
-//     discount: "",
-//   },
-// ];
 
 function App() {
   const [items, setItems] = useState([]);
@@ -117,13 +39,32 @@ function App() {
 
   const [data, setData] = useState([]);
 
+  const [error, setError] = useState(null);
+
+  const [weight, setWeight] = useState([]);
+
   useEffect(() => {
-    getProduct().then((data) => {
-      setData(data); // Set the name of the first product
-      setLoading(true);
-    });
+    async function fetchData() {
+      try {
+        const { data, error } = await getProduct(weight);
+        if (error) {
+          setError(error);
+        } else {
+          setData(data);
+        }
+        setLoading(true);
+      } catch (error) {
+        setError(error);
+        setLoading(true);
+      }
+    }
+
+    fetchData();
   }, []);
 
+  if (error) {
+    return <p>An error occurred: {error.message}</p>;
+  }
   // useEffect(() => {
   //   fetch("https://64c18518fa35860baea0a3e4.mockapi.io/data")
   //     .then((Response) => Response.json())

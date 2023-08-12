@@ -1,11 +1,17 @@
 import supabase from "./supabase";
+import { useState } from "react";
 
-export async function getProduct() {
-  const { data, error } = await supabase.from("product").select("*");
+export async function getProduct(weight) {
+  const { data, error } = await supabase
+    .from("product")
+    .select("*")
+    .eq([], weight);
 
   if (error) {
-    console.log(error);
-    throw new Error("not found");
+    throw new Error("مشکل در برقراری ارتباط");
   }
-  return data;
+  if (data.length === 0) {
+    throw new Error("محصول جستوجو شده موجود نمی باشد");
+  }
+  return { data, error };
 }
