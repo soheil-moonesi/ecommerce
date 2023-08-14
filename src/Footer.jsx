@@ -5,7 +5,7 @@ export function Footer() {
   const isActive = hour >= activeHour && hour <= deActiveHour;
 
   return (
-    <footer className="text-center m-3">
+    <footer className="m-3 text-center">
       تاریخ امروز: {new Date().toLocaleDateString("fa-IR")}
       <div>
         پشتیبانی تلفنی از ساعت {activeHour} تا {deActiveHour} : 09190169216

@@ -5,7 +5,7 @@ import { All_Levels } from "./All_Levels";
 import { All_Models } from "./All_Models";
 import { Header } from "./Header";
 import { Accordion } from "./Accordion";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaShoppingCart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
@@ -63,7 +63,7 @@ function App() {
   }, []);
 
   if (error) {
-    return <p>An error occurred: {error.message}</p>;
+    return <p> {error.message}</p>;
   }
   // useEffect(() => {
   //   fetch("https://64c18518fa35860baea0a3e4.mockapi.io/data")
@@ -74,11 +74,12 @@ function App() {
   // });
 
   return (
-    <div className=" w-auto h-auto bg-white flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center w-auto h-auto bg-white ">
       <Header>
         <ShowNumberOfBuyItems items={items} />
       </Header>
       <SwiperShow />
+      <Categories />
       <All_Models
         handleAddItems={handleAddItems}
         data={data}
@@ -100,7 +101,9 @@ function App() {
 
 function ShowNumberOfBuyItems({ items }) {
   return (
-    <div className="flex self-center m-11">سبد خرید 🛒 {items.length}</div>
+    <div className="flex gap-2">
+      <p>سبد خرید </p> <FaShoppingCart size={20} /> <div>{items.length}</div>
+    </div>
   );
 }
 
@@ -146,6 +149,29 @@ function Rating() {
   );
 }
 
+function Categories() {
+  return (
+    <div className="flex flex-wrap items-center justify-around w-full h-auto m-7">
+      <div className="flex flex-col items-center justify-center h-40 w-60">
+        <img src="./Categories/Box 1.jpg" alt="" />
+        <p>فتوسل و روشنایی</p>
+      </div>
+      <div className="flex flex-col items-center justify-center h-40 w-60">
+        <img src="./Categories/Box 2.jpg" alt="" />
+        <p>حفاظت کننده سه فاز</p>
+      </div>
+      <div className="flex flex-col items-center justify-center h-40 w-60">
+        <img src="./Categories/Box 3.jpg" alt="" />
+        <p>حفاظت کننده تک فاز</p>
+      </div>
+      <div className="flex flex-col items-center justify-center h-40 w-60">
+        <img src="./Categories/Box 4.jpg" alt="" />
+        <p>ترموستات</p>
+      </div>
+    </div>
+  );
+}
+
 function SwiperShow() {
   return (
     <>
@@ -161,19 +187,30 @@ function SwiperShow() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper w-full h-96"
+        className="w-full m-5 mySwiper h-96"
       >
-        <SwiperSlide className="bg-black">Slide 1</SwiperSlide>
         <SwiperSlide>
-          <img src="Models/logo.png" alt="" />
+          <img
+            className="object-cover "
+            src="Banners/Big Banner 1.jpg"
+            alt=""
+          />
         </SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="object-cover "
+            src="Banners/Big Banner 2.jpg"
+            alt=""
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          {" "}
+          <img
+            className="object-cover "
+            src="Banners/Big Banner 3.jpg"
+            alt=""
+          />
+        </SwiperSlide>
       </Swiper>
     </>
   );

@@ -14,8 +14,8 @@ export function Buy_Section({
       <button onClick={() => handleDeleteAllItems()}>
         خالی کردن سبد خرید❌🛒
       </button>
-      <div className="w-full flex justify-center">
-        <div className="flex h-auto flex-col m-3 border-2 border-black w-1/2">
+      <div className="flex justify-center w-full">
+        <div className="flex flex-col w-1/2 h-auto m-3 border-2 border-black">
           {items.map((items) => (
             <Buy_Item items={items} handleDeleteItems={handleDeleteItems} />
           ))}
@@ -29,7 +29,7 @@ export function Buy_Section({
 
 function Buy_Item({ items, handleDeleteItems }) {
   return (
-    <div className=" w-full h-auto flex justify-around p-2 border-2 border-black ">
+    <div className="flex justify-around w-full h-auto p-2 border-2 border-black ">
       <span>{items.name}</span> <span> {items.buyCount} عدد</span>
       <span> {items.price} تومان </span>
       <span>مجموع {items.price * items.buyCount}</span>

@@ -11,7 +11,7 @@ export async function getProduct(weight) {
     throw new Error("مشکل در برقراری ارتباط");
   }
   if (data.length === 0) {
-    throw new Error("محصول جستوجو شده موجود نمی باشد");
+    throw new Error("محصول جستوجو شده، موجود نمی باشد");
   }
   return { data, error };
 }

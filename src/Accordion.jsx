@@ -2,8 +2,8 @@ import { useState } from "react";
 
 export function Accordion({ AccordionText }) {
   return (
-    <div className="w-full justify-center flex-wrap flex m-3">
-      <div className="justify-center flex-wrap flex flex-col w-1/2">
+    <div className="flex flex-wrap justify-center w-full m-3">
+      <div className="flex flex-col flex-wrap justify-center w-1/2">
         {AccordionText.map((AccordionText, i) => (
           <AccordionItems AccordionText={AccordionText} num={i} />
         ))}
@@ -15,10 +15,10 @@ function AccordionItems({ AccordionText, num }) {
   const [isOpen, setToggle] = useState(false);
 
   return (
-    <div className="flex flex-wrap flex-col w-full justify-center border-2 border-black w-full cursor-pointer">
+    <div className="flex flex-col flex-wrap justify-center w-full border-2 border-black cursor-pointer">
       <div
         onClick={() => setToggle((isOpen) => !isOpen)}
-        className="flex text-center justify-between m-5"
+        className="flex justify-between m-5 text-center"
       >
         <span>{num + 1}</span>
         {AccordionText.title}
