@@ -1,9 +1,11 @@
+import React from "react";
+
 export function Buy_Section({
   items,
   handleDeleteItems,
   handleDeleteAllItems,
 }) {
-  const sumPriceEachItem = items.map((items) => items.price * items.buyCount);
+  const sumPriceEachItem = items.map((item) => item.price * item.buyCount);
   const totalPriceAllItems = sumPriceEachItem.reduce(
     (total, price) => total + price,
     0
@@ -15,10 +17,27 @@ export function Buy_Section({
         خالی کردن سبد خرید❌🛒
       </button>
       <div className="flex justify-center w-full">
-        <div className="flex flex-col w-1/2 h-auto m-3 border-2 border-black">
-          {items.map((items) => (
-            <Buy_Item items={items} handleDeleteItems={handleDeleteItems} />
-          ))}
+        <div className="flex flex-col w-[70%] h-auto m-3 border-2 border-black">
+          <table className="table-fixed ">
+            <thead>
+              <tr>
+                <th className="border border-slate-600">نام محصول</th>
+                <th className="border border-slate-600">قیمت</th>
+                <th className="border border-slate-600">تعداد</th>
+                <th className="border border-slate-600">مجموع قیمت</th>
+                <th className="border border-slate-600">حذف</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <Buy_Item
+                  key={item.id} // Add a unique key for each item
+                  item={item}
+                  handleDeleteItems={handleDeleteItems}
+                />
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -27,13 +46,18 @@ export function Buy_Section({
   );
 }
 
-function Buy_Item({ items, handleDeleteItems }) {
+function Buy_Item({ item, handleDeleteItems }) {
   return (
-    <div className="flex justify-around w-full h-auto p-2 border-2 border-black ">
-      <span>{items.name}</span> <span> {items.buyCount} عدد</span>
-      <span> {items.price} تومان </span>
-      <span>مجموع {items.price * items.buyCount}</span>
-      <button onClick={() => handleDeleteItems(items.id)}>❌</button>
-    </div>
+    <tr className="border border-slate-600">
+      <td className="text-center border border-slate-600">{item.name}</td>
+      <td className="text-center border border-slate-600 ">{item.price}</td>
+      <td className="text-center border border-slate-600">{item.buyCount}</td>
+      <td className="text-center border border-slate-600">
+        {item.price * item.buyCount}
+      </td>
+      <td className="text-center">
+        <button onClick={() => handleDeleteItems(item.id)}>❌</button>
+      </td>
+    </tr>
   );
 }

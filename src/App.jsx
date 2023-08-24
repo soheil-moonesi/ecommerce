@@ -23,8 +23,23 @@ import { getProduct } from "./services/apiProduct";
 
 function App() {
   const [items, setItems] = useState([]);
+
   function handleAddItems(itemPass) {
-    setItems((items) => [...items, itemPass]);
+    const itemExistsIndex = items.findIndex((item) => item.id === itemPass.id);
+
+    if (itemExistsIndex !== -1) {
+      // Item already exists, update buyCount
+      const updatedItems = [...items];
+      updatedItems[itemExistsIndex] = {
+        ...updatedItems[itemExistsIndex],
+        buyCount: updatedItems[itemExistsIndex].buyCount + itemPass.buyCount,
+      };
+
+      setItems(updatedItems);
+    } else {
+      // Item doesn't exist, add it to the array
+      setItems((prevItems) => [...prevItems, itemPass]);
+    }
   }
 
   const [isLoading, setLoading] = useState(false);
@@ -151,20 +166,20 @@ function Rating() {
 
 function Categories() {
   return (
-    <div className="flex flex-wrap items-center justify-around w-full h-auto m-7">
-      <div className="flex flex-col items-center justify-center h-40 w-60">
+    <div className="flex flex-wrap items-center justify-around w-full h-auto m-5">
+      <div className="flex flex-col items-center justify-center h-40 m-12 w-60">
         <img src="./Categories/Box 1.jpg" alt="" />
         <p>فتوسل و روشنایی</p>
       </div>
-      <div className="flex flex-col items-center justify-center h-40 w-60">
+      <div className="flex flex-col items-center justify-center h-40 m-12 w-60">
         <img src="./Categories/Box 2.jpg" alt="" />
         <p>حفاظت کننده سه فاز</p>
       </div>
-      <div className="flex flex-col items-center justify-center h-40 w-60">
+      <div className="flex flex-col items-center justify-center h-40 m-12 w-60">
         <img src="./Categories/Box 3.jpg" alt="" />
         <p>حفاظت کننده تک فاز</p>
       </div>
-      <div className="flex flex-col items-center justify-center h-40 w-60">
+      <div className="flex flex-col items-center justify-center h-40 m-12 w-60">
         <img src="./Categories/Box 4.jpg" alt="" />
         <p>ترموستات</p>
       </div>
@@ -187,19 +202,19 @@ function SwiperShow() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="w-full m-5 mySwiper h-96"
+        className="w-full mySwiper h-96"
       >
         <SwiperSlide>
           <img
             className="object-cover "
-            src="Banners/Big Banner 1.jpg"
+            src="./Banners/Big Banner 1.jpg"
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
             className="object-cover "
-            src="Banners/Big Banner 2.jpg"
+            src="./Banners/Big Banner 2.jpg"
             alt=""
           />
         </SwiperSlide>
@@ -207,7 +222,7 @@ function SwiperShow() {
           {" "}
           <img
             className="object-cover "
-            src="Banners/Big Banner 3.jpg"
+            src="./Banners/Big Banner 3.jpg"
             alt=""
           />
         </SwiperSlide>

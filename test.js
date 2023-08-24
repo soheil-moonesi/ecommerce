@@ -100,6 +100,55 @@ const totalPriceAllItems = sumPriceEachItem.reduce(function (
   index
 ) {
   return accumulator + currentValue;
-},
-initialValue);
+}, initialValue);
 console.log(totalPriceAllItems);
+
+let data = [
+  {
+    name: "آمپر متر ۹۶",
+    price: "7990000",
+    model: "AMD-6000A",
+    code: "21D1",
+    weight: "315gr",
+    dimension: "96*96*115 mm",
+    standard: "ip30",
+    photo: "https://s8.uupload.ir/files/آمپر_متر_۹۶_1cx.jpg",
+    id: "1",
+  },
+  {
+    name: " آمپرمتر ۹۶*۴۸",
+    price: "8900000",
+    model: "AMU-6000A",
+    code: "21U1",
+    weight: "250gr",
+    dimension: "48*96*112 mm",
+    standard: "ip20",
+    photo: "https://s8.uupload.ir/files/آمپرمتر_۹۶۴۸_4mul.jpg",
+    id: "2",
+  },
+];
+
+let dataExt = [
+  {
+    name: " 1",
+    price: "2",
+    model: "3",
+    code: "4",
+    weight: "5",
+    dimension: "6",
+    standard: "7",
+    photo: "8",
+    id: "1",
+  },
+];
+for (let i = 0; i < data.length; i++) {
+  if (dataExt[0].id === data[i].id) {
+    console.log("hi");
+    console.log(i);
+    data[i].price = 0;
+  } else {
+    console.log("lo");
+  }
+}
+let testdata = { ...data[0], name: "kk" };
+console.log(testdata);
