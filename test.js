@@ -114,6 +114,7 @@ let data = [
     standard: "ip30",
     photo: "https://s8.uupload.ir/files/آمپر_متر_۹۶_1cx.jpg",
     id: "1",
+    buyCount: 5,
   },
   {
     name: " آمپرمتر ۹۶*۴۸",
@@ -125,6 +126,7 @@ let data = [
     standard: "ip20",
     photo: "https://s8.uupload.ir/files/آمپرمتر_۹۶۴۸_4mul.jpg",
     id: "2",
+    buyCount: 10,
   },
 ];
 
@@ -139,16 +141,34 @@ let dataExt = [
     standard: "7",
     photo: "8",
     id: "1",
+    buyCount: 3,
   },
 ];
-for (let i = 0; i < data.length; i++) {
-  if (dataExt[0].id === data[i].id) {
-    console.log("hi");
-    console.log(i);
-    data[i].price = 0;
-  } else {
-    console.log("lo");
-  }
+// for (let i = 0; i < data.length; i++) {
+//   if (dataExt[0].id === data[i].id) {
+//     console.log("hi");
+//     console.log(i);
+//     data[i].price = 0;
+//   } else {
+//     console.log("lo");
+//   }
+// }
+// let testdata = { ...data[0], name: "kk" };
+// console.log(testdata);
+// console.log(data);
+let newData;
+let x;
+x = data.findIndex((data) => data.id === dataExt[0].id);
+console.log(x);
+if (x === -1) {
+  console.log("sss");
+  newData = [...data, dataExt[0]];
+  console.log(newData);
+} else {
+  newData = [...data];
+  newData[x] = {
+    ...newData[x],
+    buyCount: data[x].buyCount + dataExt[0].buyCount,
+  };
+  console.log(newData);
 }
-let testdata = { ...data[0], name: "kk" };
-console.log(testdata);

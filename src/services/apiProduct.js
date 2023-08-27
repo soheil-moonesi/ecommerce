@@ -1,11 +1,13 @@
 import supabase from "./supabase";
 import { useState } from "react";
 
-export async function getProduct() {
+export async function getProduct(search, priceValue) {
   const { data, error } = await supabase
     .from("product")
     .select("*")
-    .eq("weight", "100gr");
+    .lt("price", priceValue);
+  // console.log(search);
+  // .eq("name", " تایمر"); or use lt
 
   if (error) {
     throw new Error("مشکل در برقراری ارتباط");

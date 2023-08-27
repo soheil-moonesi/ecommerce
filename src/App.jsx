@@ -56,12 +56,21 @@ function App() {
 
   const [error, setError] = useState(null);
 
-  const [weight, setWeight] = useState([]);
+  //faild , Try it later ...
+  const [search, setSearch] = useState("");
+  function handleSearch(x) {
+    setSearch(x);
+  }
+
+  const [priceValue, setPriceValue] = useState(8900000);
+  const handlePriceValue = (e) => {
+    setPriceValue(e.target.value);
+  };
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data, error } = await getProduct(weight);
+        const { data, error } = await getProduct(search, priceValue);
         if (error) {
           setError(error);
         } else {
@@ -75,7 +84,7 @@ function App() {
     }
 
     fetchData();
-  }, []);
+  }, [search, priceValue]);
 
   if (error) {
     return <p> {error.message}</p>;
@@ -90,7 +99,7 @@ function App() {
 
   return (
     <div className="flex flex-col items-center justify-center w-auto h-auto bg-white ">
-      <Header>
+      <Header handleSearch={handleSearch}>
         <ShowNumberOfBuyItems items={items} />
       </Header>
       <SwiperShow />
@@ -99,6 +108,8 @@ function App() {
         handleAddItems={handleAddItems}
         data={data}
         isLoading={isLoading}
+        priceValue={priceValue}
+        handlePriceValue={handlePriceValue}
       />
 
       <Buy_Section

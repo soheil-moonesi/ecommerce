@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-export function Header({ children }) {
+export function Header({ children, handleSearch }) {
+  const handleChange = (event) => {
+    // 👇 Get input value from "event"
+    handleSearch(event.target.value.toString());
+  };
+
   return (
     <div className=" bg-blue-400 w-full flex flex-col justify-between h-auto items-center lg:flex-row lg:min-h-[5rem] ">
       <h1 className="flex justify-between mt-4 lg:mr-10 lg:items-center lg:mt-0">
@@ -13,6 +18,7 @@ export function Header({ children }) {
           className="flex h-8 bg-white rounded-xl w-[50%] "
           type="text"
           placeholder="جستجو"
+          onChange={handleChange}
         />
         <div className="flex">{children}</div>
       </div>
