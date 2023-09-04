@@ -22,7 +22,6 @@ export function All_Models({
   // const handlePriceValue = (e) => {
   //   setPriceValue(e.target.value);
   // };
-
   return (
     <>
       <h2 className="m-2 m-8 text-center">تمامی محصولات</h2>
@@ -48,7 +47,7 @@ export function All_Models({
         <input
           id="default-range"
           min={0}
-          max={8900000}
+          max={12000000}
           type="range"
           value={priceValue}
           onChange={handlePriceValue}
@@ -97,9 +96,11 @@ function Models({ modelsObj, handleAddItems }) {
       buyCount,
       id: modelsObj?.id,
     };
+    // setTimeout(() => toast(), 3000);
     handleAddItems(itemPass);
     setBuyCount(1);
   }
+
   //discountRate is not supported for now
   return (
     <form
@@ -132,7 +133,7 @@ function Models({ modelsObj, handleAddItems }) {
         {/* <div className="text-center">
         تعداد موجود: {modelsObj?.remaining - buyCount}
       </div> */}
-        <div className="sm:hidden">
+        <div className="">
           <div className="flex justify-center gap-4">
             <button type="button" onClick={buyCountDecrease}>
               -
@@ -152,7 +153,7 @@ function Models({ modelsObj, handleAddItems }) {
         <div className="flex items-center justify-center">
           <button
             type="submit"
-            class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+            class=" text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-1.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           >
             <span>
               <span className="sm:hidden">سبد خرید🛒</span>
