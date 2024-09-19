@@ -62,7 +62,7 @@ function App() {
     setSearch(x);
   }
 
-  const [priceValue, setPriceValue] = useState(12000000);
+  const [priceValue, setPriceValue] = useState(8900000);
   const handlePriceValue = (e) => {
     setPriceValue(e.target.value);
   };
@@ -71,13 +71,6 @@ function App() {
     async function fetchData() {
       try {
         const { data, error } = await getProduct(search, priceValue);
-        // if (data !== 0) {
-        console.log(data);
-        console.log(error);
-
-        //   setError(null);
-        // }
-
         if (error) {
           setError(error);
         } else {
@@ -93,19 +86,8 @@ function App() {
     fetchData();
   }, [search, priceValue]);
 
-  // if (error) {
-  //   return <p> {error.message}</p>;
-  // }
-
-  function ShowErrorMessage({ error }) {
-    if (error == null) {
-      return null;
-    }
-    return (
-      <div className={`${error ? "bg-red-500" : "hidden"}`}>
-        <p> {error.message}</p>
-      </div>
-    );
+  if (error) {
+    return <p> {error.message}</p>;
   }
   // useEffect(() => {
   //   fetch("https://64c18518fa35860baea0a3e4.mockapi.io/data")
@@ -129,7 +111,7 @@ function App() {
         priceValue={priceValue}
         handlePriceValue={handlePriceValue}
       />
-      <ShowErrorMessage error={error} />
+
       <Buy_Section
         items={items}
         handleDeleteItems={handleDeleteItems}
@@ -139,7 +121,6 @@ function App() {
       <Footer />
       <Rating />
       <Accordion AccordionText={AccordionText} />
-      <Toast items={items} />
     </div>
   );
 }
@@ -172,56 +153,6 @@ const AccordionText = [
     note: " سهیل مونسی و سپهر مونسی",
   },
 ];
-
-function Toast({ items }) {
-  const [toastP, setToast] = useState();
-  const [latestItem, setLatestItem] = useState(null);
-
-  useEffect(() => {
-    if (items.length > 0) {
-      setLatestItem(items[items.length - 1]);
-      setToast(true);
-
-      const timer = setTimeout(() => {
-        setToast(false);
-        setLatestItem(null);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [items]);
-
-  return (
-    <div className={`fixed bottom-5 right-5 ${toastP ? "visible" : "hidden"}`}>
-      {latestItem && (
-        <div
-          className="max-w-xs bg-white border rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700"
-          role="alert"
-        >
-          <div className="flex p-4">
-            <div className="flex-shrink-0">
-              <svg
-                className="h-4 w-4 text-green-500 mt-0.5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <p className="px-3 text-gray-700 text-l dark:text-gray-400">
-                {latestItem.name} به سبد خرید اضافه شد 🛒
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
 
 function Rating() {
   const createStars = Array(5).fill(0);

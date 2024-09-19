@@ -172,10 +172,3 @@ if (x === -1) {
   };
   console.log(newData);
 }
-let inp = 80;
-function toast(inp) {
-  console.log(inp);
-
-  return inp;
-}
-setTimeout(() => toast(inp), 3000);

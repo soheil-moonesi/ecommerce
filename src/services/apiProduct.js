@@ -8,12 +8,12 @@ export async function getProduct(search, priceValue) {
     .lt("price", priceValue);
   // console.log(search);
   // .eq("name", " تایمر"); or use lt
+
   if (error) {
     throw new Error("مشکل در برقراری ارتباط");
   }
   if (data.length === 0) {
     throw new Error("محصول جستوجو شده، موجود نمی باشد");
   }
-
   return { data, error };
 }
